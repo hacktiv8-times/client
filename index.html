@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="google-signin-client_id" content="394233952968-u2cmasf883te32foqnlt39h2ie625rm1.apps.googleusercontent.com">
+  <link rel="stylesheet" href="/styles/bootstrap.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+  <title>Hacktiv8 Times</title>
+  <script src="https://apis.google.com/js/platform.js"></script>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark justify-content-between">
+    <a class="navbar-brand" href="#">Hacktiv8 Times</a>
+    <div id="user"></div>
+    <div class="g-signin2" data-onsuccess="onSignIn"></div>
+  </nav>
+
+  <div class="container">
+    <div id="content" class="row mt-3">
+      <div class="col-sm-3">
+          <h3>Weather info</h3>
+          <h6 id="city-name"></h6>
+          <ul id="weather-info" style="list-style: none"></ul>
+      </div>
+      <div class="col-sm-4">
+          <h3>Top stories</h3>
+          <table class="table">
+            <tbody id="fetched-news"></tbody>
+          </table>
+      </div>
+      <div class="col-sm-5">
+          <h3>News content</h3>
+          <div id="news-content"></div>
+      </div>    
+    </div>
+
+  </div>
+
+  <script src="/scripts/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="/scripts/jquery-3.3.1.js"></script>
+  <script src="/scripts/main.js"></script>
+</body>
+
+</html>
+
+<!-- b83ae849dd58366eae054c11dc368753 -->

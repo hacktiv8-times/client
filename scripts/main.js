@@ -39,6 +39,7 @@ function getNews() {
     })
     .done(topStories => {
       $('#search-news').hide()
+      $('#content-news').hide()
       $('#top-news').show()
 
       let news = ''
@@ -64,6 +65,8 @@ function getNews() {
 }
 
 function fetch(info) {
+  $('#content-news').show()
+
   let url = info[0]
   let title = info[1]
 
@@ -127,6 +130,7 @@ function searchNews(keyword) {
       `
     })
     $('#top-news').hide()
+    $('#content-news').hide()
     $('#search-news').show()
 
     $('#fetched-search-news').empty()
@@ -163,6 +167,7 @@ function onSignIn(googleUser) {
   $('body').removeClass('bg-landing')
   $('.parent-table').hide()
   $('#search-news').hide()
+  $('#content-news').hide()
   $('#top-news-nav').show()
   $('#top-news').show()
   $("#user").show()
@@ -201,6 +206,7 @@ function signOut() {
   $("#user").hide()
   $('#search-news').hide()
   $('#top-news-nav').hide()
+  $('#content-news').hide()
   // $("#content").hide()
   $('.g-signin2').show()
   $('body').addClass('bg-landing')

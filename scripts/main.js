@@ -17,13 +17,13 @@ function getWeather() {
       `)
       $('#weather-info').empty()
       $("#weather-info").prepend(`
-      <li><img src="http://openweathermap.org/img/w/${weatherInfo.weather[0].icon}.png">${weatherInfo.weather[0].main}</li>
-      <li>Temperature: ${weatherInfo.main.temp} °C</li>
-      <li>Pressure: ${weatherInfo.main.pressure} atm</li>
-      <li>Humidity: ${weatherInfo.main.humidity} %</li>
-      <li>Min. temp: ${weatherInfo.main.temp_min} °C</li>
-      <li>Min. temp: ${weatherInfo.main.temp_max} °C</li>
-      <li>Cloudiness: ${weatherInfo.clouds.all} %</li>
+      <li class="PT-Serif-font"><img src="http://openweathermap.org/img/w/${weatherInfo.weather[0].icon}.png">${weatherInfo.weather[0].main}</li>
+      <li class="PT-Serif-font">Temperature: ${weatherInfo.main.temp} °C</li>
+      <li class="PT-Serif-font">Pressure: ${weatherInfo.main.pressure} atm</li>
+      <li class="PT-Serif-font">Humidity: ${weatherInfo.main.humidity} %</li>
+      <li class="PT-Serif-font">Min. temp: ${weatherInfo.main.temp_min} °C</li>
+      <li class="PT-Serif-font">Max. temp: ${weatherInfo.main.temp_max} °C</li>
+      <li class="PT-Serif-font">Cloudiness: ${weatherInfo.clouds.all} %</li>
       `)
     })
     .fail(function(jqXHR, textStatus) {
@@ -125,8 +125,8 @@ function onSignIn(googleUser) {
   $("#user").show()
   $("#content").fadeIn(500)
 
-  let html = `<div class="navbar-brand">${profile.getName()}</div>
-              <img src="${profile.getImageUrl()}" alt="userImage" style="border-radius: 8px; width: 50px;">
+  let html = `<div class="navbar-brand" style="font-size: 1rem">${profile.getName()}</div>
+              <img src="${profile.getImageUrl()}" alt="userImage" style="border-radius: 8px; width: 40px;">
               <a href="#" onclick="signOut();" class="m-2 text-danger"><i class="fas fa-power-off" style="color: white;"></i></a>`
 
   $('#user').empty()

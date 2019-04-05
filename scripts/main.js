@@ -127,8 +127,9 @@ function onSignIn(googleUser) {
   $("#user").show()
   $("#content").fadeIn(500)
 
-  let html = `<div class="navbar-brand" style="font-size: 1rem">${profile.getName()}</div>
-              <img src="${profile.getImageUrl()}" alt="userImage" style="border-radius: 8px; width: 40px;">
+  let html = `<input class="mr-4" type="text" placeholder="Search news" style="border-radius: 5px; padding-left: 10px; padding-right: 10px;" onchange="search(this.value)">
+              <div class="navbar-brand">${profile.getName()}</div>
+              <img src="${profile.getImageUrl()}" alt="userImage" style="border-radius: 8px; width: 50px;">
               <a href="#" onclick="signOut();" class="m-2 text-danger"><i class="fas fa-power-off" style="color: white;"></i></a>`
 
   $('#user').empty()

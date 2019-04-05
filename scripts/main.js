@@ -122,6 +122,8 @@ function onSignIn(googleUser) {
   const profile = googleUser.getBasicProfile();
 
   $('.g-signin2').hide()
+  $('body').removeClass('bg-landing')
+  $('.parent-table').hide()
   $("#user").show()
   $("#content").fadeIn(500)
 
@@ -152,4 +154,6 @@ function signOut() {
   $("#user").hide()
   // $("#content").hide()
   $('.g-signin2').show()
+  $('body').addClass('bg-landing')
+  $('.parent-table').show()
 }

@@ -1,68 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="google-signin-client_id" content="394233952968-u2cmasf883te32foqnlt39h2ie625rm1.apps.googleusercontent.com">
+    <link rel="stylesheet" href="/styles/bootstrap.css">
+    <link rel="stylesheet" href="/styles/index.css">
+    <link href="/styles/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Lora" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Bitter" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css?family=PT+Serif" rel="stylesheet"> 
+    <title>Hacktiv8 Times</title>
+    <script src="https://apis.google.com/js/platform.js"></script>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <meta name="google-signin-client_id" content="394233952968-u2cmasf883te32foqnlt39h2ie625rm1.apps.googleusercontent.com">
-  <link rel="stylesheet" href="/styles/bootstrap.css">
-  <link rel="stylesheet" href="/styles/index.css">
-  <link href="/styles/aos.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-  <link href="https://fonts.googleapis.com/css?family=Lora" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Bitter" rel="stylesheet"> 
-  <link href="https://fonts.googleapis.com/css?family=PT+Serif" rel="stylesheet"> 
-  <title>Hacktiv8 Times</title>
-  <script src="https://apis.google.com/js/platform.js"></script>
-</head>
+  <body class="bg-landing">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark justify-content-between">
+      <a class="navbar-brand" href="#" style="font-family: 'Cinzel'; font-size: 1.5rem">HACKTIV8 TIMES</a>
+      <div id="user"></div>
+      <div class="g-signin2" data-onsuccess="onSignIn"></div>
+    </nav>
 
-<body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark justify-content-between">
-    <a class="navbar-brand" href="#" style="font-family: 'Cinzel'; font-size: 1.5rem">HACKTIV8 TIMES</a>
-    <div id="user"></div>
-    <div class="g-signin2" data-onsuccess="onSignIn"></div>
-  </nav>
-
-  <div class="container">
-    <div id="content" class="row mt-3">
-      <div class="col-sm-3">
-          <h3>Weather info</h3>
-          <h6 id="city-name" style="font-family: 'PT Serif', serif;"></h6>
-          <ul id="weather-info" style="list-style: none" data-aos="fade-up"></ul>
-      </div>
-      <div class="col-sm-4">
-          <h3>Top Stories</h3>
-          <table class="table table-hover" style="height: 100px !important; overflow: scroll;">
-            <tbody id="fetched-news"></tbody>
-          </table>
-      </div>
-      <div class="col-sm-5">
-<<<<<<< HEAD
-          <div class="d-flex justify-content-between">
-            <h3>News content</h3>
-            <div id="show-youtube-button"></div>
+    <div class="container">
+      <div class="parent-table">
+          <div id="landing-page" class="child-table" style="margin-top: 10rem; color: white">
+            <h1 id="welcome-text" data-aos="fade-right" data-aos-duration="2000">HACKTIV8 TIMES</h1>
+            <h2 id="tagline" data-aos="fade-left" data-aos-duration="2000" data-aos-delay="500">Your reliable news portal</h2>
           </div>
-=======
-          <h3>News Content</h3>
->>>>>>> improve UI
-          <div id="news-content"></div>
-          <div class="mt-3">
-            <div id="fetched-video"></div>
-          </div>
+      </div>
+      <div id="content" class="row mt-3">
+        <div class="col-sm-3">
+            <h3>Weather info</h3>
+            <h6 id="city-name" style="font-family: 'PT Serif', serif;"></h6>
+            <ul id="weather-info" style="list-style: none" data-aos="fade-up"></ul>
+        </div>
+        <div class="col-sm-4">
+            <h3>Top Stories</h3>
+            <table class="table table-hover" style="height: 100px !important; overflow: scroll;">
+              <tbody id="fetched-news"></tbody>
+            </table>
+        </div>
+        <div class="col-sm-5">
+            <div class="d-flex justify-content-between">
+              <h3>News content</h3>
+              <div id="show-youtube-button"></div>
+            </div>
+            <div id="news-content"></div>
+            <div class="mt-3">
+              <div id="fetched-video"></div>
+            </div>
+        </div>
       </div>
     </div>
-  </div>
 
-  <script src="/scripts/popper.min.js"
-    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-    crossorigin="anonymous"></script>
-  <script src="/scripts/jquery-3.3.1.js"></script>
-  <script src="/scripts/main.js"></script>
-  <script src="/scripts/aos.js"></script>
-  <script>AOS.init();</script>
-</body>
-
+    <script src="/scripts/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"></script>
+    <script src="/scripts/jquery-3.3.1.js"></script>
+    <script src="/scripts/main.js"></script>
+    <script src="/scripts/aos.js"></script>
+    <script>AOS.init();</script>
+  </body>
 </html>
-
-<!-- b83ae849dd58366eae054c11dc368753 -->

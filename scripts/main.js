@@ -38,29 +38,66 @@ function getNews() {
       headers: { token: localStorage.getItem('token') }
     })
     .done(topStories => {
-      $('#fetched-news').empty()
+      let news = ''
       topStories.results.forEach(topStory => {
-        $("#fetched-news").prepend(`
+        news += 
+        `
         <tr data-aos="fade-up">
-          <td>
-            <a href="#" onclick="fetchNewsContent('${topStory.url}')" style="font-family: 'Lora', serif; text-decoration: none !important; color: black">
-              ${topStory.title} <br>
-              <small>${topStory.byline}</small>
-            </a>
-          </td>
+        <td>
+        <a href="#" onclick="fetch(['${topStory.url}', '${topStory.title}'])" style="font-family: 'Lora', serif; text-decoration: none !important; color: black">
+        ${topStory.title} <br>
+        <small>${topStory.byline}</small>
+        </a>
+        </td>
         </tr>
-        `)
+        `
       })
+      $('#fetched-news').empty()
+      $("#fetched-news").prepend(news)
     })
     .fail(err => {
       console.log("request failed", err);
     })
 }
 
+function fetch(info) {
+  let url = info[0]
+  let title = info[1]
+
+  let buttonYoutube = `<a href="#fetched-video"><i class="fab fa-youtube fa-3x" style="color: red;"></i></a>`
+  $('#show-youtube-button').empty()
+  $('#show-youtube-button').append(buttonYoutube)
+
+  fetchNewsContent(url)
+  fetchYoutubeVideo(title)
+}
+
 function fetchNewsContent(url) {
-  let html = `<iframe src=${url} height="600" width="500" data-aos="zoom-in"></iframe>`
+  let html = `<iframe src=${url} height="600" width="100%" data-aos="zoom-in"></iframe>`
   $('#news-content').empty()
   $('#news-content').append(html)
+}
+
+function fetchYoutubeVideo(rawTitle) {
+  let title = rawTitle.replace("’", "%27")
+  $.ajax({
+      url: `${baseUrl}/youtube/${title}`,
+      method: "GET",
+      headers: { token: localStorage.getItem('token') }
+    })
+    .done(data => {
+      let videos = `<h3>Related Videos</h3>`
+      if(data) {
+        data.forEach(e => {
+          videos += `<p><iframe width="100%" height="315" src="https://www.youtube.com/embed/${e.id.videoId}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></p>`
+        })
+      }
+      $('#fetched-video').empty()
+      $('#fetched-video').append(videos)
+  })
+  .fail(err => {
+    console.log("request failed", err);
+  })
 }
 
 function onSignIn(googleUser) {

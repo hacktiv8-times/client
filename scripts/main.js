@@ -64,7 +64,7 @@ function fetch(info) {
   let url = info[0]
   let title = info[1]
 
-  let buttonYoutube = `<a href="#fetched-video"><i class="fab fa-youtube fa-3x" style="color: red;"></i></a>`
+  let buttonYoutube = `<a data-aos="fade-up" href="#fetched-video"><i class="fab fa-youtube fa-3x" style="color: red;"></i></a>`
   $('#show-youtube-button').empty()
   $('#show-youtube-button').append(buttonYoutube)
 
@@ -89,7 +89,7 @@ function fetchYoutubeVideo(rawTitle) {
       let videos = `<h3>Related Videos</h3>`
       if(data) {
         data.forEach(e => {
-          videos += `<p><iframe width="100%" height="315" src="https://www.youtube.com/embed/${e.id.videoId}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></p>`
+          videos += `<p data-aos="fade-left"><iframe width="100%" height="315" src="https://www.youtube.com/embed/${e.id.videoId}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></p>`
         })
       }
       $('#fetched-video').empty()
@@ -143,6 +143,9 @@ function signOut() {
   auth2.signOut().then(function () {
       console.log('User signed out.');
       localStorage.clear()
+      $('#news-content').empty()
+      $('#show-youtube-button').empty()
+      $('#fetched-video').empty()
   });
 
   $("#content").fadeOut(500)

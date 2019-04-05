@@ -41,9 +41,9 @@ function getNews() {
       $('#fetched-news').empty()
       topStories.results.forEach(topStory => {
         $("#fetched-news").prepend(`
-        <tr>
+        <tr data-aos="fade-up">
           <td>
-            <a href="#" onclick="fetchNewsContent('${topStory.url}')">
+            <a href="#" onclick="fetchNewsContent('${topStory.url}')" style="font-family: 'Lora', serif; text-decoration: none !important; color: black">
               ${topStory.title} <br>
               <small>${topStory.byline}</small>
             </a>
@@ -58,7 +58,7 @@ function getNews() {
 }
 
 function fetchNewsContent(url) {
-  let html = `<iframe src=${url} height="600" width="500"></iframe>`
+  let html = `<iframe src=${url} height="600" width="500" data-aos="zoom-in"></iframe>`
   $('#news-content').empty()
   $('#news-content').append(html)
 }
@@ -74,7 +74,7 @@ function onSignIn(googleUser) {
               localStorage.setItem('name', response.name)
               localStorage.setItem('email', response.email)
               localStorage.setItem('picture', response.picture)
-              
+
               getWeather()
               getNews()
           })
@@ -86,7 +86,7 @@ function onSignIn(googleUser) {
 
   $('.g-signin2').hide()
   $("#user").show()
-  $("#content").show()
+  $("#content").fadeIn(500)
 
   let html = `<div class="navbar-brand">${profile.getName()}</div>
               <img src="${profile.getImageUrl()}" alt="userImage" style="border-radius: 8px; width: 50px;">
@@ -108,7 +108,8 @@ function signOut() {
       localStorage.clear()
   });
 
+  $("#content").fadeOut(500)
   $("#user").hide()
-  $("#content").hide()
+  // $("#content").hide()
   $('.g-signin2').show()
 }

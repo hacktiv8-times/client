@@ -76,7 +76,7 @@ function fetch(info) {
 }
 
 function fetchNewsContent(url) {
-  let html = `<iframe src=${url} height="600" width="100%" data-aos="zoom-in"></iframe>`
+  let html = `<iframe src=${url} height="600" width="100%" data-aos="zoom-in" sandbox=""></iframe>`
   $('#news-content').empty()
   $('#news-content').append(html)
 }
@@ -174,8 +174,8 @@ function onSignIn(googleUser) {
   $('#top-news-nav').append(topNewsNav)
 
   let html = `<input id="search-input" class="mr-4" type="text" placeholder="Search news" style="border-radius: 5px; padding-left: 5px; padding-right: 5px;" onchange="searchNews(this.value)">
-              <div class="navbar-brand">${profile.getName()}</div>
-              <img src="${profile.getImageUrl()}" alt="userImage" style="border-radius: 8px; width: 50px;">
+              <div class="navbar-brand" style="font-size: 1rem;">${profile.getName()}</div>
+              <img src="${profile.getImageUrl()}" alt="userImage" style="border-radius: 8px; width: 40px;">
               <a href="#" onclick="signOut();" class="m-2 text-danger"><i class="fas fa-power-off" style="color: white;"></i></a>`
 
   $('#user').empty()

@@ -38,6 +38,9 @@ function getNews() {
       headers: { token: localStorage.getItem('token') }
     })
     .done(topStories => {
+      $('#search-news').hide()
+      $('#top-news').show()
+
       let news = ''
       topStories.results.forEach(topStory => {
         news += 
@@ -100,6 +103,41 @@ function fetchYoutubeVideo(rawTitle) {
   })
 }
 
+function searchNews(keyword) {
+  $.ajax({
+    url: `${baseUrl}/news/${keyword}`,
+    method: "GET",
+    headers: { token: localStorage.getItem('token') }
+  })
+  .done(searchedNews => {
+    $('#search-input').val('')
+
+    let searchNews = ''
+    searchedNews.forEach(news => {
+      searchNews += 
+      `
+      <tr data-aos="fade-up">
+      <td>
+      <a href="#" onclick="fetch(['${news.web_url}', '${news.headline.main}'])" style="font-family: 'Lora', serif; text-decoration: none !important; color: black">
+      ${news.headline.main} <br>
+      <small>${news.byline.original}</small>
+      </a>
+      </td>
+      </tr>
+      `
+    })
+    $('#top-news').hide()
+    $('#search-news').show()
+
+    $('#fetched-search-news').empty()
+    $("#fetched-search-news").prepend(searchNews)
+
+  })
+  .fail(err => {
+    console.log("request failed", err);
+  })
+}
+
 function onSignIn(googleUser) {
   if (!localStorage.getItem('token')) {
       const id_token = googleUser.getAuthResponse().id_token
@@ -124,11 +162,20 @@ function onSignIn(googleUser) {
   $('.g-signin2').hide()
   $('body').removeClass('bg-landing')
   $('.parent-table').hide()
+  $('#search-news').hide()
+  $('#top-news-nav').show()
+  $('#top-news').show()
   $("#user").show()
   $("#content").fadeIn(500)
 
-  let html = `<div class="navbar-brand" style="font-size: 1rem">${profile.getName()}</div>
-              <img src="${profile.getImageUrl()}" alt="userImage" style="border-radius: 8px; width: 40px;">
+  let topNewsNav = `<a class="nav-link" onclick="getNews()" href="#">Top News</a>`
+
+  $('#top-news-nav').empty()
+  $('#top-news-nav').append(topNewsNav)
+
+  let html = `<input id="search-input" class="mr-4" type="text" placeholder="Search news" style="border-radius: 5px; padding-left: 5px; padding-right: 5px;" onchange="searchNews(this.value)">
+              <div class="navbar-brand">${profile.getName()}</div>
+              <img src="${profile.getImageUrl()}" alt="userImage" style="border-radius: 8px; width: 50px;">
               <a href="#" onclick="signOut();" class="m-2 text-danger"><i class="fas fa-power-off" style="color: white;"></i></a>`
 
   $('#user').empty()
@@ -152,6 +199,8 @@ function signOut() {
 
   $("#content").fadeOut(500)
   $("#user").hide()
+  $('#search-news').hide()
+  $('#top-news-nav').hide()
   // $("#content").hide()
   $('.g-signin2').show()
   $('body').addClass('bg-landing')
